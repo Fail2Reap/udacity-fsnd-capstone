@@ -1,103 +1,346 @@
-touch a.txt;gpg --sign a.txt;rm -rf a.txt\*
+# World of Warcraft Auctions API
 
-flask db init -d backend/database/migrations
-flask db migrate -m 'initial migration' -d backend/database/migrations
+## Table of Contents
 
-heroku run flask db upgrade -d backend/database/migrations
+- [Project Overview](#project-overview)
+  - [Directory Structure](#directory-structure)
+- [Getting Started](#getting-started)
+  - [Overview of Key Dependencies](#overview-of-key-dependencies)
+  - [Installing Dependencies](#installing-dependencies)
+  - [Configuring Environment Variables](#configuring-environment-variables)
+  - [Running the Backend Server](#running-the-backend-server)
+- [Testing](#testing)
+  - [Local](#local)
+  - [Remote](#remote)
+- [RBAC](#rbac)
+  - [Roles](#roles)
+- [API Reference](#api-reference)
+  - [Getting Started](#getting-started)
+  - [Error Handling](#error-handling)
+  - [Endpoints](#endpoints)
 
-bash run_tests.sh
+## Project Overview
 
-psql -h ec2-54-220-170-192.eu-west-1.compute.amazonaws.com -d df5u05mlkjalsf -U qkaripyzgbnihb -W
+I created this API as a base for some personal projects that require historical auction data. Currently the API provided by Blizzard does not include historical data but rather just a snapshot of auction data at a particular point in time with no history.
 
-# -f .tmp/populate_db.sql
+Because of this, I decided to create my own API. The next step would be building a data service that polls Blizzard's API and then ingests any new data into the database for further consumption.
 
-26fb621d97ef3401b1e1005cb997da1ac335161044517608d16205d439000f4f
+### Directory Structure
 
-Motivation for project
-Project dependencies, local development and hosting instructions,
-Detailed instructions for scripts to install any project dependencies, and to run the development server.
-Documentation of API behavior and RBAC controls
+```
+.
+├── Procfile
+├── README.md
+├── awdaada.txt
+├── requirements.txt
+├── run.py
+├── run_tests.sh
+├── runtime.txt
+├── setup.sh
+├── backend
+│   ├── __init__.py
+│   ├── blueprints
+│   │   ├── __init__.py
+│   │   ├── auctions.py
+│   │   ├── auth.py
+│   │   ├── home.py
+│   │   └── items.py
+│   ├── config
+│   │   ├── production.py
+│   │   └── testing.py
+│   ├── database
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   ├── README
+│   │   │   ├── alembic.ini
+│   │   │   ├── env.py
+│   │   │   ├── script.py.mako
+│   │   │   └── versions
+│   │   │       └── 8a3a4eba6d09_initial_migration.py
+│   │   └── models
+│   │       ├── __init__.py
+│   │       ├── auction.py
+│   │       └── item.py
+│   ├── services
+│   │   └── auth
+│   │       ├── __init__.py
+│   │       └── auth.py
+│   └── static
+│       └── favicon.ico
+└── test
+    ├── __init__.py
+    ├── test_routes.py
+    ├── data
+    │   ├── auctions.json
+    │   └── items.json
+    ├── utils
+    │   ├── __init__.py
+    │   └── auth.py
+    └── udacity-fsnd-capstone.postman_collection.json
+```
 
-# Roles
+## Getting Started
 
-## Free - Can get specific items or auctions
+### Overview of Key Dependencies
 
-get:item Allows for creation of a new item.
-get:auction Allows viewing of a specific auction.
+Here we have a quick overview of the key dependencies used in the creation of this web app project.
 
-## Premium - Can get specific items or auctions, and all items or auctions
+- [Python](https://www.python.org/) is a programming language that lets you work quickly and integrate systems more effectively.
 
-get:item Allows for creation of a new item.
-get:items Allows viewing of all items.
-get:auction Allows viewing of a specific auction.
-get:auctions Allows viewing of all auctions.
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/) is a lightweight backend microservices framework for Python. Flask is required to handle requests and responses.
 
-## Admin - Can get specific items or auctions, all items or auctions, and create, update and delete items or auctions
+- [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/) is an extension that handles SQLAlchemy database migrations for Flask applications using Alembic.
 
-get:item Allows for creation of a new item.
-get:items Allows viewing of all items.
-post:item Allows for creation of a new item.
-patch:item Allows for patching of an existing specific item.
-delete:item Allows for deletion of a specific item.
+- [python-jose](https://python-jose.readthedocs.io/en/latest/) a JOSE implementation in Python
 
-get:auction Allows viewing of a specific auction.
-get:auctions Allows viewing of all auctions.
-post:auction Allows for creation of a new auction.
-patch:auction Allows for patching of an existing specific auction.
-delete:auction Allows for deletion of a specific auction.
+- [gunicorn](https://gunicorn.org/) 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
 
-# Accounts
+### Installing Dependencies
 
-free_user@email.com
-premium_user@email.com
-admin_user@email.com
-ThisIsATestAccount!
+Before we can run our Flask app, we need to ensure our environment is set up correctly.
 
-https://fail2reap-prod.eu.auth0.com/authorize?
-audience=wow-auctions
-&response_type=token
-&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn
-&redirect_uri=http://127.0.0.1:5000
+1. **Python 3.9**<br>
+   Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python).
 
-https://fail2reap-prod.eu.auth0.com/v2/logout?
-returnTo=http://127.0.0.1:5000
-&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn
+2. **Virtual Environment**<br>
+   It's recommended to work within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/). [Conda](https://docs.conda.io/en/latest/) is another great alternative for managing virtual environments.
 
-get access tokens for 3 accounts using the above flow
+3. **Project Dependencies**<br>
+   Once you have your virtual environment setup and running, install the required ependencies by naviging to the project root directory and running:
+   ```bash
+   pip install -r requirements.txt;
+   ```
+   This will install all of the required packages within the [requirements.txt](requirements.txt) file including our key dependencies.
 
-# TODO
+### Configuring Environment Variables
 
-https://powerful-harbor-60014.herokuapp.com/
+Once dependencies have been installed, we need to configure environment variables for our Flask app.
 
-- create tests
-- add comments everywhere
-- remove unnecessary commented code/imports
-- ensure all secrets are stored as environment variables
-- re-export requirements both conda and pip
-- update shell files setup.sh/run_tests.sh
-  - Auth0 is set up and running at the time of submission. All required configuration settings are included in a bash file which export:
-    - The Auth0 Domain Name
-    - The JWT code signing secret
-    - The Auth0 Client ID
-- write documentation
+This can be done by running the `setup_local.sh` file:
 
-  - Motivation for project
-  - Project dependencies, local development and hosting instructions
-    - project tree
-    - URL is provided in project README
-  - Detailed instructions for scripts to install any project dependencies, and to run the development server.
-    - local testing (unittests)
-    - production testing (postman)
-  - Documentation of API behavior and RBAC controls
-    - Description of roles and their permissions
-    - APIs and their requiremed permissions
-    - Instructions are provided in README for setting up authentication so reviewers can test endpoints at live application endpoint
+```bash
+bash setup_local.sh;
+```
 
-- update hostname in collection, export and commit with project
-- deploy on heroku
-- renew tokens
-- # run tests and ensure they run
+### Running the backend server
 
-# udacity-fsnd-capstone
+To run the server, navigate to the root directory and run:
 
-> > > > > > > 93155ece4c0432ed6f4eb94116670e3a008c0461
+```bash
+flask run;
+```
+
+The API will be available under [http://localhost:5000](http://localhost:5000) by default.
+
+> _note:_ Ensure the virtual environment you created earlier is currently active or dependency errors may occur.
+
+## Testing
+
+### Local
+
+To run the unittests locally, simply run the [run_tests.sh](run_tests.sh) file using the command below:
+
+```bash
+bash run_tests.sh;
+```
+
+> _note:_ This is a self-contained file and includes all setup and execution variables and data so no additional steps are required.
+
+### Remote
+
+Testing the API remotely can be done using [Postman](https://www.postman.com/). Once the app is installed, simply import the [udacity-fsnd-capstone.postman_collection.json](./test/udacity-fsnd-capstone.postman_collection.json) collection.
+
+Here you will be presented with 4 sub-folders; `Public`, `Free`, `Premium` and `Admin` users. These have their relevant tokens already pre-populated and can be used to run queries against the API immediately.
+
+## RBAC
+
+### Free (free_user(at)email(dot)com)
+
+Can get specific items or auctions
+
+- `get:item` Allows for creation of a new item.
+- `get:auction` Allows viewing of a specific auction.
+
+### Premium (premium_user(at)email(dot)com)
+
+Can get specific items or auctions, and all items or auctions
+
+- `get:item` Allows for creation of a new item.
+- `get:items` Allows viewing of all items.
+- `get:auction` Allows viewing of a specific auction.
+- `get:auctions` Allows viewing of all auctions.
+
+### Admin (admin_user(at)email(dot)com)
+
+Can get specific items or auctions, all items or auctions, and create, update and delete items or auctions
+
+- `get:item` Allows for creation of a new item.
+- `get:items` Allows viewing of all items.
+- `post:items` Allows for creation of a new item.
+- `patch:item` Allows for patching of an existing specific item.
+- `delete:item` Allows for deletion of a specific item.
+- `get:auction` Allows viewing of a specific auction.
+- `get:auctions` Allows viewing of all auctions.
+- `post:auctions` Allows for creation of a new auction.
+- `patch:auction` Allows for patching of an existing specific auction.
+- `delete:auction` Allows for deletion of a specific auction.
+
+<details>
+  <summary>Click me for secrets!</summary>
+  ThisIsATestAccount!
+</details></br>
+
+### Getting New Tokens
+In the event the tokens provided in the Postman collection expire, click [refresh tokens](https://fail2reap-prod.eu.auth0.com/authorize?audience=wow-auctions&response_type=token&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn&redirect_uri=https://powerful-harbor-60014.herokuapp.com/) and sign in using one of the email accounts above.
+
+You may need to [logout](https://fail2reap-prod.eu.auth0.com/v2/logout?returnTo=https://powerful-harbor-60014.herokuapp.com/&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn) before a new token can be issued for a different user.
+
+## API Reference
+
+### Getting Started
+
+- All responses and request bodies from and to this API are using `JSON`.
+- The API base URI is https://powerful-harbor-60014.herokuapp.com/
+
+### Error Handling
+
+Errors are returned as JSON objects in the following format:
+
+```json
+{
+  "success": false,
+  "error": 404,
+  "message": {
+    "code": "not_found",
+    "description": "The URL or resource was not found.",
+  }
+}
+```
+
+The following error codes are returned by this API:
+
+- **400**: Bad Request - If the request body could not be parsed.
+- **401**: Unauthorized - If the user is not authenticated.
+- **403**: Forbidden - If the user is not allowed to access the resource.
+- **404**: Not Found - If the requested resource could not be found.
+- **422**: Unprocessable - If the request body could be parsed, but its contents are semantically incorrect.
+
+### Endpoints
+
+#### **Auctions**
+
+
+
+#### **Items**
+
+> <span style="color:darkseagreen">**GET**</span> /item/<item_id>
+
+Description
+
+- Request Parameters
+  - name (type): Description
+
+- Example Request
+  ```bash
+  curl --request GET ''
+  ```
+
+- Example Response
+  ```json
+
+  ```
+
+<br>
+
+> <span style="color:darkseagreen">**GET**</span> /items
+
+Description
+
+- Request Parameters
+  - name (type): Description
+
+- Example Request
+  ```bash
+  curl --request GET ''
+  ```
+
+- Example Response
+  ```json
+
+  ```
+
+<br>
+
+
+> <span style="color:gold">**POST**</span> /items
+
+Description
+
+- Request Body
+  - name (type): Description
+
+- Example Request
+  ```bash
+  curl --request POST '' \
+       --header "Content-Type: application/json" \
+       --data '{}'
+  ```
+
+- Example Response
+  ```json
+  {
+    "success": true,
+    "created": 123551
+  }
+  ```
+
+<br>
+
+
+> <span style="color:#2E8BC0">**PATCH**</span> /
+
+Description
+
+- Request Body
+  - name (type): Description
+
+- Example Request
+  ```bash
+  curl --request PATCH '' \
+       --header "Content-Type: application/json" \
+       --data '{}'
+  ```
+
+- Example Response
+  ```json
+  {
+    "success": true,
+    "updated": 123551
+  }
+  ```
+
+<br>
+
+
+><span style="color:lightcoral">**DELETE**</span> /
+
+Description
+
+- Request Parameters
+  - name (type): Description
+
+* Example Request
+    ```bash
+    curl --request DELETE ''
+    ```
+
+* Example Response
+  ```json
+  {
+    "success": true,
+    "deleted": 123551
+  }
+  ```
+<br>
+
+
