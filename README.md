@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 flask db init -d ./app/database/migrations/
 flask db migrate -m "" -d ./app/database/migrations
 flask db upgrade -d ./app/database/migrations
@@ -73,6 +74,7 @@ get access tokens for 3 accounts using the above flow
     - The JWT code signing secret
     - The Auth0 Client ID
 - write documentation
+
   - Motivation for project
   - Project dependencies, local development and hosting instructions
     - project tree
@@ -88,4 +90,8 @@ get access tokens for 3 accounts using the above flow
 - update hostname in collection, export and commit with project
 - deploy on heroku
 - renew tokens
-- run tests and ensure they run
+- # run tests and ensure they run
+
+# udacity-fsnd-capstone
+
+> > > > > > > 93155ece4c0432ed6f4eb94116670e3a008c0461
