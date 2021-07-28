@@ -1,13 +1,15 @@
-<<<<<<< HEAD
-flask db init -d ./app/database/migrations/
-flask db migrate -m "" -d ./app/database/migrations
-flask db upgrade -d ./app/database/migrations
+touch a.txt;gpg --sign a.txt;rm -rf a.txt*
+
+flask db init -d backend/database/migrations
+flask db migrate -m 'initial migration' -d backend/database/migrations
 
 bash run_tests.sh
 
-psql -h ec2-176-34-222-188.eu-west-1.compute.amazonaws.com -d dv61lv29ehfah -U kwvmjdjhhglxff -W
-psql -h ec2-176-34-222-188.eu-west-1.compute.amazonaws.com -d dv61lv29ehfah -U kwvmjdjhhglxff -W -f .tmp/populate_db.sql
-91769f00c2e3bb290039f6d82db68653b0f6b02981355dbcfbd2ffbf9becb65f
+psql -h ec2-54-220-170-192.eu-west-1.compute.amazonaws.com -d df5u05mlkjalsf -U qkaripyzgbnihb -W
+
+# -f .tmp/populate_db.sql
+
+26fb621d97ef3401b1e1005cb997da1ac335161044517608d16205d439000f4f
 
 Motivation for project
 Project dependencies, local development and hosting instructions,

@@ -46,8 +46,8 @@ def create_app(test_config=None):
     # Setting up db and migrations
     setup_db(app)
 
-    if app.config['TESTING']:
-        reset_db()
+    # if app.config['TESTING']:
+    #     reset_db()
 
     migrate = Migrate()
     migrate.init_app(app, db)
