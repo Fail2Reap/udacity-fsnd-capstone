@@ -2,7 +2,7 @@ import os
 import inspect
 from pathlib import Path
 
-from flask.app import Flask
+from flask import Flask, url_for
 from flask.blueprints import Blueprint
 from flask.globals import request
 from flask.json import jsonify
@@ -51,6 +51,12 @@ def create_app(test_config=None):
 
     migrate = Migrate()
     migrate.init_app(app, db)
+
+    # Favicon
+    app.add_url_rule(
+        '/favicon.ico',
+        redirect_to=url_for('static', filename='favicon.ico')
+    )
 
     # Baseline error handlers
     @app.errorhandler(400)
