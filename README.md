@@ -1,7 +1,9 @@
-touch a.txt;gpg --sign a.txt;rm -rf a.txt*
+touch a.txt;gpg --sign a.txt;rm -rf a.txt\*
 
 flask db init -d backend/database/migrations
 flask db migrate -m 'initial migration' -d backend/database/migrations
+
+heroku run flask db upgrade -d backend/database/migrations
 
 bash run_tests.sh
 
@@ -64,6 +66,8 @@ returnTo=http://127.0.0.1:5000
 get access tokens for 3 accounts using the above flow
 
 # TODO
+
+https://powerful-harbor-60014.herokuapp.com/
 
 - create tests
 - add comments everywhere
