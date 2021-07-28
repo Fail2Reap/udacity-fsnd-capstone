@@ -31,7 +31,6 @@ Because of this, I decided to create my own API. The next step would be building
 .
 ├── Procfile
 ├── README.md
-├── awdaada.txt
 ├── requirements.txt
 ├── run.py
 ├── run_tests.sh
