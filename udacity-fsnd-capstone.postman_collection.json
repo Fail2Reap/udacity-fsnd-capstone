@@ -1,0 +1,1091 @@
+{
+	"info": {
+		"_postman_id": "376a183f-07d6-493d-a1ec-4630483d52bb",
+		"name": "udacity-fsnd-capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 189111,\r\n    \"name\": \"Cloak of Awesomeness\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lightlessless Silk\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auction",
+					"item": [
+						{
+							"name": "auctions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auctions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 21355123,\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"bid\": 0,\r\n    \"buyout\": 222123,\r\n    \"unit_price\": 421341,\r\n    \"quantity\": 2,\r\n    \"time_left\": \"LONG\",\r\n    \"item_id\": 172096\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"quantity\": 2,\r\n    \"time_left\": \"SHORT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Free User",
+			"item": [
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 189111,\r\n    \"name\": \"Cloak of Awesomeness\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lightlessless Silk\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auction",
+					"item": [
+						{
+							"name": "auctions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auctions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 21355123,\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"bid\": 0,\r\n    \"buyout\": 222123,\r\n    \"unit_price\": 421341,\r\n    \"quantity\": 2,\r\n    \"time_left\": \"LONG\",\r\n    \"item_id\": 172096\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"quantity\": 2,\r\n    \"time_left\": \"SHORT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{free_user_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Premium User",
+			"item": [
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 189111,\r\n    \"name\": \"Cloak of Awesomeness\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lightlessless Silk\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auction",
+					"item": [
+						{
+							"name": "auctions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auctions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 21355123,\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"bid\": 0,\r\n    \"buyout\": 222123,\r\n    \"unit_price\": 421341,\r\n    \"quantity\": 2,\r\n    \"time_left\": \"LONG\",\r\n    \"item_id\": 172096\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"quantity\": 2,\r\n    \"time_left\": \"SHORT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{premium_user_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin User",
+			"item": [
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 189111,\r\n    \"name\": \"Cloak of Awesomeness\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/items",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/173204",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"173204"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Lightlessless Silk\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/item/172230",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"172230"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/item/172230",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"item",
+										"172230"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auction",
+					"item": [
+						{
+							"name": "auctions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auctions",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 123144511,\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"bid\": 0,\r\n    \"buyout\": 123144,\r\n    \"unit_price\": 0,\r\n    \"quantity\": 23,\r\n    \"time_left\": \"SHORT\",\r\n    \"item_id\": 186358\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auctions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auctions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/1999415",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"1999415"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"timestamp\": \"2021-07-18 22:11:33.433027\",\r\n    \"quantity\": 2,\r\n    \"time_left\": \"SHORT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/auction/21355123",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"21355123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auction",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/auction/21355123",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"auction",
+										"21355123"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{admin_user_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{hostname}}/logout",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostname",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "admin_user_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im9QbmJweXY2dzFYTl9YR2UzOTRfbyJ9.eyJpc3MiOiJodHRwczovL2ZhaWwycmVhcC1wcm9kLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MGZkNjgyNDdkZGMzZjAwNjllZTI2NmUiLCJhdWQiOiJ3b3ctYXVjdGlvbnMiLCJpYXQiOjE2Mjc0NDYzMjcsImV4cCI6MTYyNzQ1MzUyNywiYXpwIjoiakc5TUk2akpCV1hNemFMc1BhYnpMbHVPd1VsaE1RRW4iLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphdWN0aW9uIiwiZGVsZXRlOml0ZW0iLCJnZXQ6YXVjdGlvbiIsImdldDphdWN0aW9ucyIsImdldDppdGVtIiwiZ2V0Oml0ZW1zIiwicGF0Y2g6YXVjdGlvbiIsInBhdGNoOml0ZW0iLCJwb3N0OmF1Y3Rpb25zIiwicG9zdDppdGVtcyJdfQ.Dbgbga3906yocvv3oaW3gsLZBsxXJYPSme9WxvNNkaYi0xUIIsKFa4n5hDPYQ5Cag_n_Slqnky2LGBUkTAsd20UDaNoTHpfUybOC3q4EpPTCn_qLssymYK2S8xRIECId72B84KTOPAPLuyGrwyN5VYle-zwq65hDqEiMmUac1qTpO2eMQHBqksCcploVHND7Dm0w3nZwwfHvfP_jrGomlkXKCHqKU4c280HBVeAhQIRXa83elMK5diMVmy006I8g_gOTuq6Y36y-s_yoQdGeiH3TzqNM8ST-_tNRosbsfXtICJQ708PUECIJ2n2U03YLWSzR62LNUMQSI0RgBWa2Rw"
+		},
+		{
+			"key": "premium_user_token",
+			"value": ""
+		},
+		{
+			"key": "free_user_token",
+			"value": ""
+		}
+	]
+}
