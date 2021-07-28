@@ -191,6 +191,7 @@ Can get specific items or auctions, all items or auctions, and create, update an
 </details></br>
 
 ### Getting New Tokens
+
 In the event the tokens provided in the Postman collection expire, click [refresh tokens](https://fail2reap-prod.eu.auth0.com/authorize?audience=wow-auctions&response_type=token&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn&redirect_uri=https://powerful-harbor-60014.herokuapp.com/) and sign in using one of the email accounts above.
 
 You may need to [logout](https://fail2reap-prod.eu.auth0.com/v2/logout?returnTo=https://powerful-harbor-60014.herokuapp.com/&client_id=jG9MI6jJBWXMzaLsPabzLluOwUlhMQEn) before a new token can be issued for a different user.
@@ -212,7 +213,7 @@ Errors are returned as JSON objects in the following format:
   "error": 404,
   "message": {
     "code": "not_found",
-    "description": "The URL or resource was not found.",
+    "description": "The URL or resource was not found."
   }
 }
 ```
@@ -229,61 +230,133 @@ The following error codes are returned by this API:
 
 #### **Auctions**
 
+> <span style="color:darkseagreen">**GET**</span> /auction/\<id>
 
-
-#### **Items**
-
-> <span style="color:darkseagreen">**GET**</span> /item/<item_id>
-
-Description
+Gets a specific auction by id.
 
 - Request Parameters
-  - name (type): Description
+
+  - id (int): Id of the auction.
 
 - Example Request
+
   ```bash
-  curl --request GET ''
+  curl --request GET 'https://powerful-harbor-60014.herokuapp.com/auction/1999415'
   ```
 
 - Example Response
-  ```json
 
+  ```json
+  {
+    "auction": {
+      "bid": 0,
+      "buyout": 289119,
+      "id": 1999415,
+      "item_id": 186364,
+      "quantity": 1,
+      "time_left": "VERY_LONG",
+      "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+      "unit_price": 0
+    },
+    "success": true
+  }
   ```
 
 <br>
 
-> <span style="color:darkseagreen">**GET**</span> /items
+> <span style="color:darkseagreen">**GET**</span> /auctions
 
-Description
-
-- Request Parameters
-  - name (type): Description
+Gets a list of all auctions.
 
 - Example Request
+
   ```bash
-  curl --request GET ''
+  curl --request GET 'https://powerful-harbor-60014.herokuapp.com/auctions'
   ```
 
 - Example Response
-  ```json
 
+  ```json
+  {
+    "auctions": [
+      {
+        "bid": 0,
+        "buyout": 198494,
+        "id": 1944580,
+        "item_id": 186373,
+        "quantity": 1,
+        "time_left": "SHORT",
+        "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+        "unit_price": 0
+      },
+      {
+        "bid": 0,
+        "buyout": 1989134,
+        "id": 1964817,
+        "item_id": 186373,
+        "quantity": 1,
+        "time_left": "SHORT",
+        "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+        "unit_price": 0
+      },
+      {
+        "bid": 0,
+        "buyout": 19894514,
+        "id": 1968541,
+        "item_id": 186358,
+        "quantity": 1,
+        "time_left": "SHORT",
+        "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+        "unit_price": 0
+      },
+      {
+        "bid": 0,
+        "buyout": 0,
+        "id": 1960044,
+        "item_id": 173204,
+        "quantity": 589,
+        "time_left": "VERY_LONG",
+        "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+        "unit_price": 3311
+      },
+      {
+        "bid": 0,
+        "buyout": 0,
+        "id": 1951355,
+        "item_id": 172097,
+        "quantity": 32,
+        "time_left": "LONG",
+        "timestamp": "Sun, 18 Jul 2021 22:11:33 GMT",
+        "unit_price": 39321
+      }
+    ],
+    "success": true
+  }
   ```
 
 <br>
 
+> <span style="color:gold">**POST**</span> /auctions
 
-> <span style="color:gold">**POST**</span> /items
-
-Description
+Creates a new auction.
 
 - Request Body
-  - name (type): Description
+
+  - id (int): Id of the auction.
+  - timestamp (datetime): Datetime of when the auction was last refreshed.
+  - bid (int): Bid on the auction in copper.
+  - buyout (int): Buyout on the auction in copper.
+  - unit_price (int): Unit Price on the auction in copper.
+  - quantity (int): Number of items in this auction.
+  - time_left (str): Time left for the auction.
+  - item_id (int): Id of the item being auctioned.
 
 - Example Request
+
   ```bash
-  curl --request POST '' \
+  curl --request POST 'https://powerful-harbor-60014.herokuapp.com/auctions' \
        --header "Content-Type: application/json" \
-       --data '{}'
+       --data '{ "id": 123144511, "timestamp": "2021-07-18 22:11:33.433027", "bid": 0, "buyout": 123144, "unit_price": 0, "quantity": 23, "time_left": "SHORT", "item_id": 186358 }'
   ```
 
 - Example Response
@@ -296,19 +369,20 @@ Description
 
 <br>
 
+> <span style="color:#2E8BC0">**PATCH**</span> /auction/\<id>
 
-> <span style="color:#2E8BC0">**PATCH**</span> /
-
-Description
+Updates an auction with a given id.
 
 - Request Body
+
   - name (type): Description
 
 - Example Request
+
   ```bash
-  curl --request PATCH '' \
+  curl --request PATCH 'https://powerful-harbor-60014.herokuapp.com/auction/123551' \
        --header "Content-Type: application/json" \
-       --data '{}'
+       --data '{"timestamp": "2021-07-18 22:11:33.433027", "quantity": 2, "time_left": "SHORT"}'
   ```
 
 - Example Response
@@ -321,18 +395,18 @@ Description
 
 <br>
 
+> <span style="color:lightcoral">**DELETE**</span> /auction/\<id>
 
-><span style="color:lightcoral">**DELETE**</span> /
-
-Description
+Deletes an auction with a given id.
 
 - Request Parameters
-  - name (type): Description
+  - id (int): Id of the auction.
 
 * Example Request
-    ```bash
-    curl --request DELETE ''
-    ```
+
+  ```bash
+  curl --request DELETE 'https://powerful-harbor-60014.herokuapp.com/auction/123551'
+  ```
 
 * Example Response
   ```json
@@ -341,6 +415,152 @@ Description
     "deleted": 123551
   }
   ```
+  <br>
+
+#### **Items**
+
+> <span style="color:darkseagreen">**GET**</span> /item/\<id>
+
+Gets a specific item by id.
+
+- Request Parameters
+
+  - id (int): Id of the item.
+
+- Example Request
+
+  ```bash
+  curl --request GET 'https://powerful-harbor-60014.herokuapp.com/item/173204'
+  ```
+
+- Example Response
+
+  ```json
+  {
+    "item": {
+      "id": 173204,
+      "name": "Lightless Silk"
+    },
+    "success": true
+  }
+  ```
+
 <br>
 
+> <span style="color:darkseagreen">**GET**</span> /items
 
+Gets a list of all items.
+
+- Example Request
+
+  ```bash
+  curl --request GET 'https://powerful-harbor-60014.herokuapp.com/items'
+  ```
+
+- Example Response
+
+  ```json
+  {
+    "items": [
+      {
+        "id": 186359,
+        "name": "Scoundrel's Harrowed Leggings"
+      },
+      {
+        "id": 186362,
+        "name": "Bindings of the Subjugated"
+      },
+      {
+        "id": 184807,
+        "name": "Relic of the First Ones"
+      },
+      {
+        "id": 186358,
+        "name": "Soulcaster's Woven Grips"
+      },
+      {
+        "id": 186364,
+        "name": "Cord of Coerced Spirits"
+      }
+    ],
+    "success": true
+  }
+  ```
+
+<br>
+
+> <span style="color:gold">**POST**</span> /items
+
+Creates a new item with a given id and name.
+
+- Request Body
+
+  - id (int): Id of the item.
+  - name (str): Name of the item.
+
+- Example Request
+
+  ```bash
+  curl --request PATCH 'https://powerful-harbor-60014.herokuapp.com/items' \
+       --header "Content-Type: application/json" \
+       --data '{"id": 0225,"name": "Sword of a Thousand Truths"}'
+  ```
+
+- Example Response
+  ```json
+  {
+    "success": true,
+    "created": 123551
+  }
+  ```
+
+<br>
+
+> <span style="color:#2E8BC0">**PATCH**</span> /item/\<id>
+
+Updates an item with a given id.
+
+- Request Body
+
+  - id (int): Item id to update.
+
+- Example Request
+
+  ```bash
+  curl --request PATCH 'https://powerful-harbor-60014.herokuapp.com/item/123551' \
+       --header "Content-Type: application/json" \
+       --data '{"name": "My Super Cool Cloak"}'
+  ```
+
+- Example Response
+  ```json
+  {
+    "success": true,
+    "updated": 123551
+  }
+  ```
+
+<br>
+
+> <span style="color:lightcoral">**DELETE**</span> /item/\<id>
+
+Deletes an item with a given id.
+
+- Request Parameters
+
+  - id (int): Item id to delete.
+
+* Example Request
+
+  ```bash
+  curl --request DELETE 'https://powerful-harbor-60014.herokuapp.com/item/123551'
+  ```
+
+* Example Response
+  ```json
+  {
+    "success": true,
+    "deleted": 123551
+  }
+  ```
+  <br>
